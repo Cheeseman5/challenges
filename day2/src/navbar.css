@@ -1,0 +1,26 @@
+nav {
+  padding: 1rem 2rem;
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(45deg, lightslategrey, transparent);
+  vertical-align: top;
+}
+.nav-links {
+  justify-self: start;
+  display: inherit;
+  color: floralwhite;
+}
+nav > .logo {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+.nav-link {
+  color: floralwhite;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logo {
+  width: 250px;
+}

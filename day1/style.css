@@ -1,0 +1,71 @@
+html {
+    background-color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+nav {
+    padding: 1rem 2rem;
+    display: inline-block;
+    width: 100%;
+    background: linear-gradient(45deg, lightslategrey, transparent);
+    vertical-align: top;
+}
+.nav-links {
+    justify-self: start;
+    display: inherit;
+    color: floralwhite;
+}
+nav > .logo {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+.nav-link {
+    color: floralwhite;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-link::after {
+    content: " | ";
+}
+
+.logo {
+    width: 250px;
+}
+
+body {
+    margin: 0px;
+}
+
+.content {
+    margin: 3rem;
+}
+
+.label {
+    display: inline;
+}
+
+.header-label, .label-cursor {
+    display: inline;
+}
+
+.proj-li {
+    list-style-type: none;
+    padding: 1rem;
+}
+
+.proj-link {
+    color: black;
+    text-decoration: none;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
