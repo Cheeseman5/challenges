@@ -1,8 +1,7 @@
-import ApiAuthorzationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
+import { Blogs } from "./components/Blogs";
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { Blog } from "./components/Blog";
 
 const AppRoutes = [
   {
@@ -10,19 +9,17 @@ const AppRoutes = [
     element: <Home />
   },
   {
+    path: '/blog',
+    element: <Blogs />
+  },
+  {
     path: '/counter',
     element: <Counter />
   },
   {
-    path: '/blog',
-    element: <Blog />
-  },
-  {
     path: '/fetch-data',
-    requireAuth: true,
     element: <FetchData />
-  },
-  ...ApiAuthorzationRoutes
+  }
 ];
 
 export default AppRoutes;
