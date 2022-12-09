@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Blogs.css';
 
 export class Blogs extends Component {
   static displayName = Blogs.name;
@@ -22,11 +23,20 @@ export class Blogs extends Component {
   static renderBlogs(blogs) {
     return (
       <div className='Blogs'>
-        <ul>
-            {blogs}
+        <ul className='blog-list'>
+            { blogs.map(data => this.renderBlog(data)) }
         </ul>
       </div>
     );
+  }
+
+  static renderBlog(blog) {
+    return (
+      <li key={blog.id} className='blog-list-item'>
+        <h5>Title: {blog.title}</h5>
+        <p>{blog.content}</p>
+      </li>
+    )
   }
 
   render() {
@@ -49,10 +59,10 @@ export class Blogs extends Component {
     // console.log(`res:${response}`);
     const data = await response.json();
     // console.log(`data:${data}`);
-    const blogs = data.map((blog) => {
-        <li key={blog.id}>{blog.title}</li>
-    });
-    console.log(`res:${JSON.stringify(response)}, data:${JSON.stringify(data)}, blogs:${JSON.stringify(blogs, null, 4)}`);
-    this.setState({ blogs: blogs, loading: false });
+    // const blogs = data.map((blog) => {
+    //     <li key={blog.id}>{blog.title}</li>
+    // });
+    // console.log(`res:${JSON.stringify(response)}, data:${JSON.stringify(data)}, blogs:${JSON.stringify(blogs, null, 4)}`);
+    this.setState({ blogs: data, loading: false });
   }
 }
