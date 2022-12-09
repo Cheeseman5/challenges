@@ -49,10 +49,10 @@ export class Blogs extends Component {
     // console.log(`res:${response}`);
     const data = await response.json();
     // console.log(`data:${data}`);
-    const blogs = data.map(blog => {
+    const blogs = data.map((blog) => {
         <li key={blog.id}>{blog.title}</li>
     });
-    console.log(`res:${response}, data:${data}, blogs:${blogs}`);
+    console.log(`res:${JSON.stringify(response)}, data:${JSON.stringify(data)}, blogs:${JSON.stringify(blogs, null, 4)}`);
     this.setState({ blogs: blogs, loading: false });
   }
 }
