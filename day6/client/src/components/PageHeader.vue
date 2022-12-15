@@ -13,19 +13,19 @@
                 </div>
                 <div class="flex-grow font-bold text-lg">
                     <router-link :to="{ name: 'home'}" >
-                        <span class="">Noble's Shop</span>
+                        <span class="">Cheese's Shop</span>
                     </router-link>
                 </div>
                 <div class="menu hidden md:flex flex-col md:flex-row mt-5 md:mt-0 gap-16">
                     <div class="flex flex-col md:flex-row gap-12 capitalize">
                         <div class="">
                             <router-link :to="{ name: 'home'}" >
-                                <a class="text-red-400 font-bold border-b border-red-400">home</a>
+                                <span class="text-red-400 font-bold border-b border-red-400">home</span>
                             </router-link>
                         </div>
                         <div class="">
                             <router-link :to="{ name: 'products'}" >
-                                <a class="">products</a>
+                                <span class="">products</span>
                             </router-link>
                         </div>
 

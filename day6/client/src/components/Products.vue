@@ -28,7 +28,6 @@
 <script>
 import axios from 'axios'
 import { RouterLink } from 'vue-router';
-
 export default ({
     data(){
         return{
@@ -41,6 +40,7 @@ export default ({
     },
     methods:{
         fetchProducts(){
+            console.log(`env.VITE_baseUrl: ${import.meta.env.VITE_baseUrl}`)
             axios.get(`${import.meta.env.VITE_baseUrl}/store/products`)
             .then((data) => {
                     this.fetchData = data.data.products
