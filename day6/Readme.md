@@ -1,3 +1,3 @@
 # Day 6
 
-![screenshot](./screenshot.png)
+![screenshot](./Screenshot.png)
