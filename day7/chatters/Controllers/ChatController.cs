@@ -7,7 +7,7 @@ namespace chatters.Controllers;
 public class ChatController : ControllerBase
 {
     private readonly ILogger<ChatController> _logger;
-    private readonly Message[] _mockMessages = new[]
+    private static List<Message> _mockMessages = new List<Message>
     {
         new Message
         {
@@ -29,6 +29,27 @@ public class ChatController : ControllerBase
             PostDateTime = DateTime.Now,
             Text = "That message was dumb and you should feel bad.",
             Author = "Butthead"
+        },
+        new Message
+        {
+            Id = 4,
+            PostDateTime = DateTime.Now,
+            Text = "The message content text 2.",
+            Author = "Some User"
+        },
+        new Message
+        {
+            Id = 5,
+            PostDateTime = DateTime.Now,
+            Text = "Some random message content text 2.",
+            Author = "Another User"
+        },
+        new Message
+        {
+            Id = 6,
+            PostDateTime = DateTime.Now,
+            Text = "That message was dumb and you should feel bad 2.",
+            Author = "Butthead"
         }
     };
 
@@ -38,19 +59,43 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet]   // GET /api/chat
+    [ResponseCache(NoStore=true)]
     public IEnumerable<Message> Get()
     {
-        Console.WriteLine($"Sending {_mockMessages.Length} blog entries back in response.");
-        return _mockMessages;
+        var rng = new Random();
+        int randCount = rng.Next(_mockMessages.Count);
+        List<Message> response = _mockMessages.Take(randCount).ToList();
+
+        Console.WriteLine($"Sending {response.Count} chat messages (out of a possible {_mockMessages.Count} messages) back in response.");
+        return response;
     }
 
     [HttpPost]  // POST /api/chat
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult Post(string author, string text)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult Post([FromBody] Message message)
     {
-        Console.WriteLine($"Pushing new message (msg:\"{text}\", by: \"{author}\")");
-        bool success = true;
-        return success ? Ok() : NotFound();
+        if(message?.Author == null || message?.Text == null)
+        {
+            return BadRequest();
+        }
+
+        Console.WriteLine($"Attempting to push new message (msg:\"{message.Text}\", by: \"{message.Author}\") onto the stack...");
+
+        AddMessage(message.Author, message.Text);
+        return Ok();
+    }
+
+    private void AddMessage(string author, string text)
+    {
+        var msg = new Message
+        {
+            Id = _mockMessages.Count,
+            PostDateTime = DateTime.Now,
+            Author = author,
+            Text = text
+        };
+        _mockMessages.Add(msg);
+        Console.WriteLine($"Pushed new message (Author: \"{msg.Author}\", Text: \"{msg.Text}\" | new length: {_mockMessages.Count}) onto the stack.");
     }
 }

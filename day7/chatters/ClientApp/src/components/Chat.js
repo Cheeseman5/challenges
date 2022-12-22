@@ -16,7 +16,7 @@ export class Chat extends Component {
     }
 
     async fetchMessages() {
-        const response = await fetch('chat');
+        const response = await fetch('api/chat');
         const data = await response.json();
 
         this.setState({ messages: data, loading: false });

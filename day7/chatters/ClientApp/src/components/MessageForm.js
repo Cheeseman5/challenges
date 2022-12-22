@@ -6,7 +6,17 @@ export class MessageForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(`author: ${event.target.author.value}, text: ${event.target.text.value}`);
+        const author = event.target.author.value;
+        const text = event.target.text.value;
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ author: author, text: text })
+        };
+
+        fetch('api/chat', requestOptions)
+            .catch(err => console.warn(err));
     }
 
     render() {
@@ -22,7 +32,7 @@ export class MessageForm extends Component {
                         Message:
                         <textarea className='message-form-text' name='text' rows='3' cols='100'/>
                     </label>
-                    <input className='message-form-submit' type='submit' value='Send' />
+                    <input className='message-form-submit' type='submit' value='Send' formMethod='POST' />
                 </form>
             </div>
         )
