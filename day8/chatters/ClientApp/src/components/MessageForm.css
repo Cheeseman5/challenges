@@ -1,0 +1,25 @@
+.message-form-header {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.message-form {
+    background: slategrey;
+    color: whitesmoke;
+    margin: 1rem;
+    border: 2px black solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px grey;
+}
+
+.message-form-author-label, .message-form-text-label {
+    padding: 0.5rem
+}
+
+.message-form-text {
+    width: 100%;
+    margin: 0rem 1rem;
+}
+
+.message-form-submit {
+    margin: 1rem;
+}
