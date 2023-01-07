@@ -19,14 +19,15 @@ export class Store extends Component {
     };
     let result = await fetch(`api/store/${newCount}`, postData);
     console.log(JSON.stringify(result, null, 4));
+    this.updateCount();
   }
 
   async updateCount() {
     const result = await fetch('api/store');
     const data = await result.json();
-    const count = 0;
-    console.log(`data: ${JSON.stringify(data, null, 4)}`);
-    // this.setState()
+    const count = data;
+    // console.log(`data: ${count}`);
+    this.setState({ count: count });
   }
 
   render() {
